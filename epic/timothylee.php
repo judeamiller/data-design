@@ -12,12 +12,12 @@
 			<li><strong>Age:</strong> 42</li>
 			<li><strong>Gender:</strong>Male</li>
 			<li><strong>Profession:</strong> Technology Writer for Ars Technica</li>
-			<li><strong>Attitude:</strong> Tim is a tech savvy writer for ArsTechnica. Though tim has a CS degree, his job is not writing code for the website, but rather articles on technology and society for ArsTechnica. </li>
-			<li><strong>Technology:</strong> Tim currently uses a Dell XPS laptop running Ubuntu 18.04 on a 3840 x 2160 display, but is regularly testing out various  devices that he is reviewing for ArsTechnica. He may be using a MacBook Pro one week, and a Chromebook the next. Though Tim has a Pixel 2 XL, he never uses it for composing articles for work. No matter which OS Tim uses, he only uses the latest FireFox browser for work.</li>
+			<li><strong>Attitude:</strong> Tim is a tech savvy writer for ArsTechnica. Though tim has a CS degree, his job is not writing code for the website, but rather articles on technology and society for ArsTechnica. Tim is comfortable using HTML tags to format his articles and add images, but is uncomfortable with CSS.</li>
+			<li><strong>Technology:</strong> Tim currently uses a Dell XPS laptop running Ubuntu 18.04 on a 3840 x 2160 display, but is regularly testing out various  devices that he is reviewing for ArsTechnica. He may be using a MacBook Pro one week, and a Chromebook the next. Though Tim has a Pixel 2 XL, he never uses it for composing articles for work. No matter which device and operating system Tim uses, he only uses the latest FireFox browser, because he has been using it since the name change from Netscape.</li>
 		</ul>
 		<hr/>
 		<h2>User Story</h2>
-		<p>Tim needs an easy way to efficiently post content to <a href="https://www.arstechnica.com">www.arstechnica.com</a> for his work. </p>
+		<p>Tim needs an easy way to efficiently post content directly to <a href="https://www.arstechnica.com">www.arstechnica.com</a> for his work. </p>
 		</ul>
 
 		<hr/>

@@ -18,7 +18,6 @@
 		<hr/>
 		<h2>User Story</h2>
 		<p>Tim needs an easy way to efficiently post content directly to <a href="https://www.arstechnica.com">www.arstechnica.com</a> for his work. </p>
-		</ul>
 
 		<hr/>
 		<h2>Navigation</h2>

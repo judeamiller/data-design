@@ -30,6 +30,9 @@
 				<li>One Author can write many articles (1 to n)</li>
 			</ul>
 		<hr/>
+		<h2>Entity Relationship Diagram</h2>
+		<img src="./entityrelationshipdiagram.svg" alt="entity relationship diagram">
+		<hr/>
 		<h2>Navigation</h2>
 		<ul>
 			<li><a href="./index.php">Return to Home</a></li>

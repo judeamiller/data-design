@@ -12,8 +12,16 @@
 			<li><strong>Age:</strong> 42</li>
 			<li><strong>Gender:</strong>Male</li>
 			<li><strong>Profession:</strong> Technology Writer for Ars Technica</li>
-			<li><strong>Attitude:</strong> Tim is a tech savvy writer for ArsTechnica. Though tim has a CS degree, his job is not writing code for the website, but rather articles on technology and society. Tim has been a tech journalist since 2007. Tim is comfortable using HTML tags to format his articles and add images, but is uncomfortable with CSS.</li>
-			<li><strong>Technology:</strong> Tim currently uses a Dell XPS laptop running Ubuntu 18.04 on a 3840 x 2160 display, but is regularly testing out various  devices that he is reviewing for ArsTechnica. He may be using a MacBook Pro one week, and a Chromebook the next. Though Tim has a Pixel 2 XL, he never uses it for composing articles for work. No matter which device and operating system Tim uses, he only uses the latest FireFox browser, because he has been using it since the name change from Netscape.</li>
+			<li><strong>Attitude:</strong>Tim is a tech savvy writer for ArsTechnica. Tim has a CS degree but his job is to
+				write articles on technology and society, not website code. Tim has been a tech journalist since 2007. Tim
+				is comfortable using HTML tags to format his articles and add images, but is uncomfortable with CSS. He feels
+				like he is wasting time when he is formatting articles instead of doing the	work of a journalist, research and writing.</li>
+			<li><strong>Technology:</strong>
+				<ul>
+					<li>Tim currently uses a Dell XPS laptop running Ubuntu 18.04 on a 3840 x 2160 display.</li>
+					<li>He is regularly testing out various  devices that he is reviewing for ArsTechnica so his device regularly changes. </li>
+					<li>Tim has a Pixel 2 XL, but he never uses it for composing articles for work.</li>
+					<li>He uses firefox across all platforms, unless he is testing new browser features.</li>
 		</ul>
 		<hr/>
 		<h2>User Story</h2>

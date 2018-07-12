@@ -9,21 +9,21 @@
 		<h2>Author</h2>
 			<ul>
 				<li>authorId (primary key)</li>
-				<li>authorProfile</li>
+				<li>authorEmail</li>
 				<li>authorHash (password)</li>
 				<li>authorName</li>
-				<li>authorEmail</li>
-				<li>authorTitle</li>
-				<li>authorTweetId</li>
+				<li>authorProfile</li>
 				<li>authorProfilePicture</li>
+				<li>authorTitle</li>
+				<li>authorTwitterLink</li>
 			</ul>
 		<h2>Article</h2>
 			<ul>
 				<li>articleId (primary key)</li>
 				<li>articleAuthorId (foreign key)</li>
+				<li>articleCategory</li>
 				<li>articleDate</li>
 				<li>articleTitle</li>
-				<li>articleCategory</li>
 			</ul>
 		<h2>Relationship</h2>
 			<ul>

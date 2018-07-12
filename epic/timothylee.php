@@ -22,6 +22,12 @@
 					<li>He is regularly testing out various  devices that he is reviewing for ArsTechnica so his device regularly changes. </li>
 					<li>Tim has a Pixel 2 XL, but he never uses it for composing articles for work.</li>
 					<li>He uses firefox across all platforms, unless he is testing new browser features.</li>
+				</ul>
+			<li><strong>Frustrations:</strong></li>
+				<ul>
+					<li>Too much time spent in formatting web presentation.</li>
+					<li>Lack of two factor authentication.</li>
+				</ul>
 		</ul>
 		<hr/>
 		<h2>User Story</h2>

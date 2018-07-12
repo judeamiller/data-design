@@ -7,7 +7,7 @@
 	<body>
 		<h1> Use Case</h1>
 
-		<a href="./index.php">Return to Home</a>
+
 		<h2>Navigation</h2>
 		<ul>
 			<li><a href="./index.php">Return to Home</a></li>

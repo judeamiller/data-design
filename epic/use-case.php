@@ -2,10 +2,10 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8"/>
-		<title> Use Case</title>
+		<title>Use Case</title>
 	</head>
 	<body>
-		<h1> Use Case</h1>
+		<h1>Use Case</h1>
 		<ol>
 			<li>Tim writes a new article on Google's Selfish Ledger. Tim uses ArsTechnica/CondéNast's writing style guide
 				and HTML tagging scheme that allows the default CSS formatting to format his article and pictures. Tim then

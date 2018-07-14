@@ -6,12 +6,12 @@
 	</head>
 	<body>
 		<h1>Persona:</h1>
-		<img src="./timothylee.jpg" alt="photo of Tim"/>
+		<img src="./timothylee.jpg" alt="Photo of Tim"/>
 		<ul>
 			<li><strong>Name:</strong> Timothy Lee</li>
 			<li><strong>Age:</strong> 42</li>
 			<li><strong>Gender:</strong>Male</li>
-			<li><strong>Profession:</strong> Technology Writer for Ars Technica</li>
+			<li><strong>Profession:</strong> Technology Writer for ArsTechnica</li>
 			<li><strong>Attitude:</strong>Tim is a tech savvy writer for ArsTechnica. Tim has a CS degree but his job is to
 				write articles on technology and society, not website code. Tim has been a tech journalist since 2007. Tim
 				is comfortable using HTML tags to format his articles and add images, but is uncomfortable with CSS. He feels

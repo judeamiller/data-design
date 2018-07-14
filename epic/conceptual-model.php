@@ -22,6 +22,7 @@
 				<li>articleId (primary key)</li>
 				<li>articleAuthorId (foreign key)</li>
 				<li>articleCategory</li>
+				<li>articleContent</li>
 				<li>articleDate</li>
 				<li>articleTitle</li>
 			</ul>

@@ -1,5 +1,5 @@
 
-ALTER DATABASE datadesign CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER DATABASE jmiller156 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 DROP TABLE IF EXISTS article;
 DROP TABLE IF EXISTS  author;
@@ -10,7 +10,7 @@ CREATE TABLE author(
 	authorHash CHAR(97) NOT NULL,
 	authorName VARCHAR(32) NOT NULL,
 	authorProfile VARCHAR(220) NOT NULL,
-	authorProfilePicture VARCHAR(2083),
+	authorProfilePicture VARCHAR(256),
 	authorTitle VARCHAR(20),
 	authorTwitterLink VARCHAR(32),
 	UNIQUE(authorEmail),
@@ -25,6 +25,7 @@ CREATE TABLE article(
 	articleCategory VARCHAR(32) NOT NULL,
 	articleDate DATETIME(6) NOT NULL,
 	articleTitle VARCHAR(100)NOT NULL,
+	articleContent VARCHAR(8192) NOT NULL,
 	INDEX(articleAuthorId),
 	FOREIGN KEY(articleAuthorId) REFERENCES author(authorId),
 	PRIMARY KEY(articleId)

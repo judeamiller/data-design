@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8"/>
 		<title>Tim Lee's Persona</title>
@@ -25,14 +25,13 @@
 				</ul>
 			<li><strong>Frustrations:</strong></li>
 				<ul>
-					<li>Too much time spent in formatting web presentation.</li>
+					<li>Too much time spent in formatting for web presentation.</li>
 					<li>Lack of two factor authentication.</li>
 				</ul>
 		</ul>
 		<hr/>
 		<h2>User Story</h2>
 		<p>Tim needs an easy way to efficiently post content directly to <a href="https://www.arstechnica.com">www.arstechnica.com</a> for his work. </p>
-
 		<hr/>
 		<h2>Navigation</h2>
 			<ul>

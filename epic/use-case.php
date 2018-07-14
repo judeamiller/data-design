@@ -27,8 +27,6 @@
 				submittal. You will be notified when your supervisor has approved the article to be pushed to the ArsTechnica
 				front page."</li>
 		</ol>
-
-
 		<hr/>
 		<h2>Navigation</h2>
 		<ul>
@@ -37,5 +35,4 @@
 			<li><a href="./timothylee.php">Persona</a></li>
 		</ul>
 	</body>
-
 </html>

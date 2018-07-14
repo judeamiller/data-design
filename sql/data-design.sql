@@ -10,7 +10,7 @@ CREATE TABLE author(
 	authorHash CHAR(97) NOT NULL,
 	authorName VARCHAR(32) NOT NULL,
 	authorProfile VARCHAR(220) NOT NULL,
-	authorProfilePicture LONGBLOB,
+	authorProfilePicture VARCHAR(2083),
 	authorTitle VARCHAR(20),
 	authorTwitterLink VARCHAR(32),
 	UNIQUE(authorEmail),

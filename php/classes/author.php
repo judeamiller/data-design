@@ -148,8 +148,8 @@ class Author {
 	/**
 	 * mutator method for author name
 	 *
-	 * @param string $newAuthorName new value of tweet content
-	 * @throws \InvalidArgumentException if $newAuthor is not a string or insecure
+	 * @param string $newAuthorName new value of author profile
+	 * @throws \InvalidArgumentException if $newAuthorName is not a string or insecure
 	 * @throws \RangeException if $newAuthorName is > 32 characters
 	 * @throws \TypeError if $newAuthorName is not a string
 	 **/
@@ -166,8 +166,39 @@ class Author {
 			throw(new \RangeException("author name is too long"));
 		}
 
-		// store the tweet content
+		// store the author name
 		$this->authorName = $newAuthorName;
+	}
+	/**
+	 * accessor method for authorProfile
+	 * @return string value of author profile
+	 **/
+	public function getAuthorProfile(): string {
+		return $this->authorProfile;
+	}
+	/**
+	 * mutator method for author profile
+	 *
+	 * @param string $newAuthorProfile new value of author profile
+	 * @throws \InvalidArgumentException if $newAuthorProfile is not a string or insecure
+	 * @throws \RangeException if $newAuthorProfile is > 220 characters
+	 * @throws \TypeError if $newAuthorProfile is not a string
+	 **/
+	public function setAuthorProfile(string $newAuthorProfile) : void {
+		// verify the author profile is secure
+		$newAuthorProfile = trim($newAuthorProfile);
+		$newAuthorProfile = filter_var($newAuthorProfile, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newAuthorProfile) === true) {
+			throw(new \InvalidArgumentException("author profile is empty or insecure"));
+		}
+
+		// verify the author profile content will fit in the database
+		if(strlen($newAuthorProfile) > 220) {
+			throw(new \RangeException("author profile is too long. limit 220 characters"));
+		}
+
+		// store the author name
+		$this->authorName = $newAuthorProfile;
 	}
 
 

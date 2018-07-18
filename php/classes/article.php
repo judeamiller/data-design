@@ -55,9 +55,9 @@ class article {
 	 * @throws \rangeException if $newAuthorId  is not positive
 	 * @throws \TypeError if article id is not
 	 **/
-	public function  setAuthorId($newAuthorId) : void {
+	public function  setArticleId($newArticleId) : void {
 		try {
-			$uuid = self::validateUuid($newAuthorId);
+			$uuid = self::validateUuid($newArticleId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
@@ -71,7 +71,7 @@ class article {
 	 * @return int value of article author id
 	 **/
 	public function getArticleAuthorId() : Uuid {
-		return($this->articleId);
+		return($this->articleAuthorId);
 	}
 
 	/**
@@ -91,5 +91,37 @@ class article {
 		// convert and store the profile id
 		$this->articleAuthorId = $uuid;
 	}
+	/**
+	 * accessor method for articleCategory
+	 * @return string value of author title
+	 **/
+	public function getArticleCategory(): string {
+		return $this->articleCategory;
+
+	/**
+	 * mutator method for article category
+	 *
+	 * @param string $newArticleCategory new value of author title
+	 * @throws \InvalidArgumentException if $newArticleCategory is not a string or insecure
+	 * @throws \RangeException if $newArticleCategory is > 32 characters
+	 * @throws \TypeError if $newArticleCategory is not a string
+	 **/
+	public function setArticleCategory(string $newArticleCategory) : void {
+			// verify the article category string is secure
+			$newArticleCategory = trim($newArticleCategory);
+			$newArticleCategory = filter_var($newArticleCategory, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+			if(empty($newArticleCategory) === true) {
+				throw(new \InvalidArgumentException("article category is empty or insecure"));
+			}
+
+			// verify the article category content will fit in the database
+			if(strlen($newArticleCategory) > 32) {
+				throw(new \RangeException("article category is too long"));
+			}
+
+			// store the author name
+			$this->articleCategory = $newArticleCategory;
+		}
+
 
 	}

@@ -255,7 +255,7 @@ class Author {
 		}
 
 		// verify the author title content will fit in the database
-		if(strlen($newAuthorName) > 20) {
+		if(strlen($newAuthorTitle) > 20) {
 			throw(new \RangeException("author title is too long"));
 		}
 
@@ -263,16 +263,36 @@ class Author {
 		$this->authorTitle = $newAuthorTitle;
 	}
 	/**
-	 * accessor method for authorProfilePighuce
-	 * @return string value of author profile picture linkk
+	 * accessor method for authorTwitterLink
+	 * @return string value of author twitter link
 	 **/
-	public function getAuthorProfilePicture(): string {
-		return $this->authorProfilePicture;
+	public function getAuthorTwitterLink(): string {
+		return $this->authorTwitterLink;
 	}
+	/**
+	 * mutator method for author profile
+	 *
+	 * @param string $newAuthorTwitterLink new value of author twitter link
+	 * @throws \InvalidArgumentException if $newAuthorTwitterLink is not a string or insecure
+	 * @throws \RangeException if $newAuthorTwitterLink is > 32 characters
+	 * @throws \TypeError if $newAuthorTwitterLink is not a string
+	 **/
+	public function setAuthorTwitterLink(string $newAuthorTwitterLink) : void {
+		// verify the author twitter link is secure
+		$newAuthorTwitterLink = trim($newAuthorTwitterLink);
+		$newAuthorTwitterLink = filter_var($newAuthorTwitterLink, FILTER_SANITIZE_URL);
+		if(empty($newAuthorTwitterLink) === true) {
+			throw(new \InvalidArgumentException("author twitter link is empty or insecure"));
+		}
 
+		// verify the author profile content will fit in the database
+		if(strlen($newAuthorTwitterLink) > 32) {
+			throw(new \RangeException("author twitter link is too long. limit 32 characters"));
+		}
 
+		// store the author profile picture link
+		$this->authorTwitterLink = $newAuthorTwitterLink;
+	}
 }
-
-
 
 ?>

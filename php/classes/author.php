@@ -34,12 +34,41 @@ class Author {
 	private $authorProfilePicture;
 	/**
 	 * author's position title at ArsTechnica
-	 */
+	 **/
 	private $authorTitle;
 	/**
 	 * link to author's twitter page
-	 */
+	 **/
 	private $authorTwitterLink;
+
+	/**
+	 * accessor method for author id
+	 *
+	 * @return int value of author id
+	 **/
+	public function getAuthorId() {
+		return($this->authorId);
+	}
+
+	/**
+	 * mutator method for author id
+	 *
+	 * @param int $newAuthorId new value of author id
+	 * @throws UnexpectedValueException if $newAuthorId is not an integer
+	 **/
+	public function  setAuthorId($newAuthorId) {
+		// verify the author id is valid
+		$newAuthorId = filter_var($newAuthorId, FILTER_VALIDATE_INT);
+		if($newAuthorId === false) {
+			throw(new UnexpectedValueException("profile ide is not a valid integer"));
+		}
+
+		// convert and store the author id
+		$this->authorId = intval($newAuthorId);
+
+	}
+
+
 }
 
 

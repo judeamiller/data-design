@@ -112,7 +112,7 @@ class Author {
 	/**
 	* accessor method for author Hash
 	* @return string value of hash
-	*/
+	**/
 	public function getAuthorHash() :string {
 		return $this->authorHash;
 	}
@@ -148,7 +148,7 @@ class Author {
 	/**
 	 * mutator method for author name
 	 *
-	 * @param string $newAuthorName new value of author profile
+	 * @param string $newAuthorName new value of author name
 	 * @throws \InvalidArgumentException if $newAuthorName is not a string or insecure
 	 * @throws \RangeException if $newAuthorName is > 32 characters
 	 * @throws \TypeError if $newAuthorName is not a string
@@ -197,10 +197,78 @@ class Author {
 			throw(new \RangeException("author profile is too long. limit 220 characters"));
 		}
 
-		// store the author name
-		$this->authorName = $newAuthorProfile;
+		// store the author profile
+		$this->authorProfile = $newAuthorProfile;
 	}
+	/**
+	 * accessor method for authorProfilePicture
+	 * @return string value of author profile picture link
+	 **/
+	public function getAuthorProfilePicture(): string {
+		return $this->authorProfilePicture;
+	}
+	/**
+	 * mutator method for author profile
+	 *
+	 * @param string $newAuthorProfilePicture new value of author profile picture
+	 * @throws \InvalidArgumentException if $newAuthorProfilePicture is not a string or insecure
+	 * @throws \RangeException if $newAuthorProfile is > 256 characters
+	 * @throws \TypeError if $newAuthorProfilePicture is not a string
+	 **/
+	public function setAuthorProfilePicture(string $newAuthorProfilePicture) : void {
+		// verify the author profile picture link is secure
+		$newAuthorProfilePicture = trim($newAuthorProfilePicture);
+		$newAuthorProfilePicture = filter_var($newAuthorProfilePicture, FILTER_SANITIZE_URL);
+		if(empty($newAuthorProfilePicture) === true) {
+			throw(new \InvalidArgumentException("author profile picture link is empty or insecure"));
+		}
 
+		// verify the author profile content will fit in the database
+		if(strlen($newAuthorProfilePicture) > 256) {
+			throw(new \RangeException("author profile picture link is too long. limit 256 characters"));
+		}
+
+		// store the author profile picture link
+		$this->authorProfilePicture = $newAuthorProfilePicture;
+	}
+	/**
+	 * accessor method for authorTitle
+	 * @return string value of author title
+	 **/
+	public function getAuthorTitle(): string {
+		return $this->authorTitle;
+	}
+	/**
+	 * mutator method for author title
+	 *
+	 * @param string $newAuthorTitle new value of author title
+	 * @throws \InvalidArgumentException if $newAuthorTitle is not a string or insecure
+	 * @throws \RangeException if $newAuthorTitle is > 20 characters
+	 * @throws \TypeError if $newAuthorTitle is not a string
+	 **/
+	public function setAuthorTitle(string $newAuthorTitle) : void {
+		// verify the author title string is secure
+		$newAuthorTitle = trim($newAuthorTitle);
+		$newAuthorTitle = filter_var($newAuthorTitle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newAuthorTitle) === true) {
+			throw(new \InvalidArgumentException("author title is empty or insecure"));
+		}
+
+		// verify the author title content will fit in the database
+		if(strlen($newAuthorName) > 20) {
+			throw(new \RangeException("author title is too long"));
+		}
+
+		// store the author name
+		$this->authorTitle = $newAuthorTitle;
+	}
+	/**
+	 * accessor method for authorProfilePighuce
+	 * @return string value of author profile picture linkk
+	 **/
+	public function getAuthorProfilePicture(): string {
+		return $this->authorProfilePicture;
+	}
 
 
 }

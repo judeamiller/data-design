@@ -40,7 +40,19 @@ class article {
 	private $articleTitle;
 
 
-	//// add constructor here.
+	public function __construct(uuid $newArticleId, uuid $newArticleAuthorId, string $newArticleCategory, string $newArticleContent, DateTime $newArticleDate, string $newArticleTitle) {
+		try{
+			$this->setArticleId($newArticleId);
+			$this->setArticleAuthorId($newArticleAuthorId);
+			$this->getArticleCategory($newArticleCategory);
+			$this->getArticleContent($newArticleContent);
+			$this->getArticleDate($newArticleDate);
+			$this->getArticleTitle($newArticleTitle);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
 
 
 	/**

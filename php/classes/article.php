@@ -40,6 +40,15 @@ class article {
 	private $articleTitle;
 
 
+	/**
+	 * article constructor.
+	 * @param uuid $newArticleId
+	 * @param uuid $newArticleAuthorId
+	 * @param string $newArticleCategory
+	 * @param string $newArticleContent
+	 * @param DateTime $newArticleDate
+	 * @param string $newArticleTitle
+	 */
 	public function __construct(uuid $newArticleId, uuid $newArticleAuthorId, string $newArticleCategory, string $newArticleContent, DateTime $newArticleDate, string $newArticleTitle) {
 		try{
 			$this->setArticleId($newArticleId);

@@ -32,7 +32,7 @@
 			</ul>
 		<hr/>
 		<h2>Entity Relationship Diagram</h2>
-		<img src="./entityrelationshipdiagram.svg" alt="entity relationship diagram">
+		<img src="./images/entityrelationshipdiagram.svg" alt="entity relationship diagram">
 		<hr/>
 		<h2>Navigation</h2>
 		<ul>

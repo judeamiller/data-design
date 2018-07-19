@@ -155,5 +155,36 @@ class article {
 		}
 		$this->articleDate = $newArticleDate;
 	}
+	/**
+	 * accessor method for articleTitle
+	 * @return string value of article title
+	 **/
+	public function getArticleTitle(): string {
+		return $this->articleTitle;
+	}
+	/**
+	 * mutator method for article title
+	 *
+	 * @param string $newArticleTitle new value of article title
+	 * @throws \InvalidArgumentException if $newArticleTitle is not a string or insecure
+	 * @throws \RangeException if $newArticleTitle is > 100 characters
+	 * @throws \TypeError if $newArticleTitle is not a string
+	 **/
+	public function setArticleTitle(string $newArticleTitle) : void {
+		// verify the article title string is secure
+		$newArticleTitle = trim($newArticleTitle);
+		$newArticleTitle = filter_var($newArticleTitle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newArticleTitle) === true) {
+			throw(new \InvalidArgumentException("article title is empty or insecure"));
+		}
+
+		// verify the article title content will fit in the database
+		if(strlen($newArticleTitle) > 100) {
+			throw(new \RangeException("article title is more than 100 characters"));
+		}
+
+		// store the article name
+		$this->articleTitle = $newArticleTitle;
+	}
 
 }

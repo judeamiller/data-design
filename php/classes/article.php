@@ -24,6 +24,11 @@ class article {
 	 **/
 	private $articleCategory;
 	/**
+	 * the text content of the article.
+	 * @var string $articleContent
+	 */
+	private $articleContent;
+	/**
 	 * date this article was published
 	 * @var \DateTime $articleDate
 	**/
@@ -33,12 +38,6 @@ class article {
 	 * @var string $articleTitle
 	 **/
 	private $articleTitle;
-	/**
-	 * the text content of the article.
-	 * @var string $articleContent
-	 */
-	private $aticleContent;
-
 	/**
 	 * accessor method for article id
 	 *
@@ -185,6 +184,37 @@ class article {
 
 		// store the article name
 		$this->articleTitle = $newArticleTitle;
+	}
+	/**
+	 * accessor method for article content
+	 * @return string value of article content
+	 **/
+	public function getArticleContent(): string {
+		return $this->articleContent ;
+	}
+	/**
+	 * mutator method for article content
+	 *
+	 * @param string $newArticleContent new value of article content
+	 * @throws \InvalidArgumentException if $newArticleContent is not a string or insecure
+	 * @throws \RangeException if $newArticleContent is > 8192 characters
+	 * @throws \TypeError if $newArticleContent is not a string
+	 **/
+	public function setArticleContent(string $newArticleContent) : void {
+		// verify the article content is secure
+		$newArticleContent = trim($newArticleContent);
+		$newArticleContent = filter_var($newArticleContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newArticleContent) === true) {
+			throw(new \InvalidArgumentException("article content is empty or insecure"));
+		}
+
+		// verify the article content content will fit in the database
+		if(strlen($newArticleContent) > 8192) {
+			throw(new \RangeException("Article content is too long. Limit 8192 characters"));
+		}
+
+		// store the article content
+		$this->articleContent = $newArticleContent;
 	}
 
 }

@@ -50,8 +50,8 @@ class article {
 	/**
 	 * mutator method for article id
 	 *
-	 * @param Uuud| sting $newArticleId value of new article id
-	 * @throws \rangeException if $newAuthorId  is not positive
+	 * @param Uuid| string $newArticleId value of new article id
+	 * @throws \rangeException if $newArticleId  is not positive
 	 * @throws \TypeError if article id is not
 	 **/
 	public function  setArticleId($newArticleId) : void {
@@ -76,7 +76,7 @@ class article {
 	/**
 	 * mutator method for article article author id
 	 *
-	 * @param Uuud| sting $newArticleAuthorId value of new article id
+	 * @param Uuid| string $newArticleAuthorId value of new article id
 	 * @throws \rangeException if $newArticleAuthorId  is not positive
 	 * @throws \TypeError if article id is not
 	 **/
@@ -167,7 +167,7 @@ class article {
 	/**
 	 * mutator method for article date
 	 *
-	 * @param \DateTime|string|null $newArticleDate tweet date as a DateTime object or string (or null to load the current time)
+	 * @param \DateTime|string|null $newArticleDate date as a DateTime object or string (or null to load the current time)
 	 * @throws \InvalidArgumentException if $newArticleDate is not a valid object or string
 	 * @throws \RangeException if $newArticleDate is a date that does not exist
 	 **/
@@ -221,3 +221,5 @@ class article {
 	}
 
 }
+
+

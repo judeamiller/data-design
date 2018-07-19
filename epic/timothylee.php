@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<h1>Persona:</h1>
-		<img src="./timothylee.jpg" alt="Photo of Tim"/>
+		<img src="./images/timothylee.jpg" alt="Photo of Tim"/>
 		<ul>
 			<li><strong>Name:</strong> Timothy Lee</li>
 			<li><strong>Age:</strong> 42</li>

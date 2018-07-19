@@ -7,7 +7,7 @@
  * @author  Jude Baca-Miller <jmiller156@cnm.edu>
  **/
 
-class Author {
+class author {
 	/**
 	 * id for this author: this is the primary key
 	 * @var int $authorId

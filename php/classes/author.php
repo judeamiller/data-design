@@ -50,9 +50,36 @@ class author {
 	private $authorTwitterLink;
 
 	/**
+	 * author constructor.
+	 * @param uuid $newAuthorId
+	 * @param string $newAuthorEmail
+	 * @param string $newAuthorHash
+	 * @param string $newAuthorName
+	 * @param string $newAuthorProfile
+	 * @param string $newAuthorProfilePicture
+	 * @param string $newAuthorTitle
+	 * @param string $newAuthorTwitterLink
+	 **/
+	public function __construct(uuid $newAuthorId, string $newAuthorEmail, string $newAuthorHash, string $newAuthorName, string $newAuthorProfile, string $newAuthorProfilePicture, string $newAuthorTitle, string $newAuthorTwitterLink) {
+		try{
+			$this->setAuthorId($newAuthorId);
+			$this->setAuthorEmail($newAuthorEmail);
+			$this->setAuthorHash($newAuthorHash);
+			$this->setAuthorName($newAuthorName);
+			$this->authorProfile($newAuthorProfile);
+			$this->authorProfilePicture($newAuthorProfilePicture);
+			$this->authorTitle($newAuthorTitle);
+			$this->authorTwitterLink($newAuthorTwitterLink);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
+
+	/**
 	 * accessor method for author id
 	 *
-	 * @return int value of author id
+	 * @return uuid value of author id
 	 **/
 	public function getAuthorId() : Uuid {
 		return($this->authorId);

@@ -112,21 +112,21 @@ class article {
 	 * @throws \TypeError if $newArticleCategory is not a string
 	 **/
 	public function setArticleCategory(string $newArticleCategory) : void {
-			// verify the article category string is secure
-			$newArticleCategory = trim($newArticleCategory);
-			$newArticleCategory = filter_var($newArticleCategory, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-			if(empty($newArticleCategory) === true) {
-				throw(new \InvalidArgumentException("article category is empty or insecure"));
-			}
-
-			// verify the article category content will fit in the database
-			if(strlen($newArticleCategory) > 32) {
-				throw(new \RangeException("article category is too long"));
-			}
-
-			// store the author name
-			$this->articleCategory = $newArticleCategory;
+		// verify the article category string is secure
+		$newArticleCategory = trim($newArticleCategory);
+		$newArticleCategory = filter_var($newArticleCategory, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newArticleCategory) === true) {
+			throw(new \InvalidArgumentException("article category is empty or insecure"));
 		}
+
+		// verify the article category content will fit in the database
+		if(strlen($newArticleCategory) > 32) {
+			throw(new \RangeException("article category is too long"));
+		}
+
+		// store the author name
+		$this->articleCategory = $newArticleCategory;
+	}
 
 	/**
 	 * accessor method for article content

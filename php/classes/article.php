@@ -97,6 +97,7 @@ class article {
 	 **/
 	public function getArticleCategory(): string {
 		return $this->articleCategory;
+	}
 
 	/**
 	 * mutator method for article category
@@ -122,6 +123,37 @@ class article {
 			// store the author name
 			$this->articleCategory = $newArticleCategory;
 		}
-
-
+	/**
+	 * accessor method for article date
+	 *
+	 * @return \DateTime value of article date
+	 **/
+	public function getArticleDate() : \DateTime {
+		return($this->articleDate);
 	}
+
+	/**
+	 * mutator method for article date
+	 *
+	 * @param \DateTime|string|null $newArticleDate tweet date as a DateTime object or string (or null to load the current time)
+	 * @throws \InvalidArgumentException if $newArticleDate is not a valid object or string
+	 * @throws \RangeException if $newArticleDate is a date that does not exist
+	 **/
+	public function setArticleDate($newArticleDate = null) : void {
+		// base case: if the date is null, use the current date and time
+		if($newArticleDate === null) {
+			$this->articleDate = new \DateTime();
+			return;
+		}
+
+		// store the like date using the ValidateDate trait
+		try {
+			$newArticleDate = self::validateDateTime($newArticleDate);
+		} catch(\InvalidArgumentException | \RangeException $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		$this->articleDate = $newArticleDate;
+	}
+
+}

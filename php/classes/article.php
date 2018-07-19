@@ -38,6 +38,11 @@ class article {
 	 * @var string $articleTitle
 	 **/
 	private $articleTitle;
+
+
+	//// add constructor here.
+
+
 	/**
 	 * accessor method for article id
 	 *

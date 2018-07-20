@@ -264,6 +264,23 @@ class article {
 		$parameters=["articleId" => $this->articleId->getBytes(), "articleAuthorId" => $this->articleAuthorId->getBytes(), "articleCategory" => $this->articleCategory, "articleContent" => $this->articleContent, "articleDate" =>$formattedDate, "articleTitle" => $this->articleTitle];
 		$statement->execute($parameters);
 	}
+
+	/**
+	 *deletes an article from mySQL
+	 *
+	 *@param \PDO $pdo PDO connection object
+	 *@throws|PDOException when mySQL relatoed errors occur
+	 *@throw \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) : void {
+		//create query template
+		$query = "DELETE FROM article WHERE articleId =  :articleId";
+		$statement =$pdo->prepare($query);
+
+		//bind member variables into the placeholders in the template
+		$parameters = ["articleId" => $this->articleId->getBytes()];
+		$statement->execute($parameters);
+	}
 }
 
 

@@ -19,6 +19,7 @@ CREATE TABLE author(
 	PRIMARY KEY(authorId)
 );
 
+
 CREATE TABLE article(
 	articleId BINARY(16) NOT NULL,
 	articleAuthorId BINARY(16) NOT NULL,

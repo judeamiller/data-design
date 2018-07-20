@@ -23,3 +23,5 @@ INSERT INTO article (articleId, articleAuthorId, articleCategory, articleContent
 	VALUES (UNHEX(REPLACE("ce89910d-c13e-4f05-8ced-56b7c4ff5d12","-", "")), UNHEX(REPLACE("8b38082e-2a87-4e93-b00f-bb0a7434ff2d","-", "")),"Tech Policy", "null", "2018-07-18 12:15:03", "Someone Stole Ajit Pai's Stupid Novelty Coffe Mug");
 
 DELETE FROM article WHERE articleId = UNHEX(REPLACE("ce89910d-c13e-4f05-8ced-56b7c4ff5d12","-", ""));
+
+SELECT authorName, authorEmail, authorTitle, authorTwitterLink FROM author JOIN article ON author.authorId = article.articleAuthorId;

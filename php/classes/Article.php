@@ -246,6 +246,24 @@ class article {
 		$this->articleTitle = $newArticleTitle;
 	}
 
+	/**
+	 * inserts article into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws\PDOException when mySQL related errors occur
+	 * @throws\TypeError if $pdo is not a PDO connection object.
+	 **/
+
+	public function insert(\PDO $pdo) : void {
+		//create query template
+		$query = "INSERT INTO article(articleId, articleAuthorId, articleCategory, articleContent, articleDate, articleTitle) VALUES(:articleId, :articleAuthorId, :articleCategory, :articleContent, :articleDate, :articleTitle)";
+		$statement = $pdo->prepare($query);
+
+		//bind the member variables to the placeholders in template
+		$formattedDate = $this->articleDate->format("Y-m-d H:i:s.u");
+		$parameters=["articleId" => $this->articleId->getBytes(), "articleAuthorId" => $this->articleAuthorId->getBytes(), "articleCategory" => $this->articleCategory, "articleContent" => $this->articleContent, "articleDate" =>$formattedDate, "articleTitle" => $this->articleTitle];
+		$statement->execute($parameters);
+	}
 }
 
 

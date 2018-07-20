@@ -253,7 +253,6 @@ class article {
 	 * @throws\PDOException when mySQL related errors occur
 	 * @throws\TypeError if $pdo is not a PDO connection object.
 	 **/
-
 	public function insert(\PDO $pdo) : void {
 		//create query template
 		$query = "INSERT INTO article(articleId, articleAuthorId, articleCategory, articleContent, articleDate, articleTitle) VALUES(:articleId, :articleAuthorId, :articleCategory, :articleContent, :articleDate, :articleTitle)";
@@ -261,7 +260,26 @@ class article {
 
 		//bind the member variables to the placeholders in template
 		$formattedDate = $this->articleDate->format("Y-m-d H:i:s.u");
-		$parameters=["articleId" => $this->articleId->getBytes(), "articleAuthorId" => $this->articleAuthorId->getBytes(), "articleCategory" => $this->articleCategory, "articleContent" => $this->articleContent, "articleDate" =>$formattedDate, "articleTitle" => $this->articleTitle];
+		$parameters = ["articleId" => $this->articleId->getBytes(), "articleAuthorId" => $this->articleAuthorId->getBytes(), "articleCategory" => $this->articleCategory, "articleContent" => $this->articleContent, "articleDate" =>$formattedDate, "articleTitle" => $this->articleTitle];
+		$statement->execute($parameters);
+	}
+
+
+	/**
+	 *updates an article from mySQL
+	 *
+	 *@param \PDO $pdo PDO connection object
+	 *@throws|PDOException when mySQL related errors occur
+	 *@throw \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) : void {
+		//create query template
+		$query = "UPDATE article SET articleAuthorId  = :articleAuthorId, articleContent = :articleContent, articleDate = :articleDate, articleTitle = :articleTitle WHERE articleId = :articleId";
+		$statement = $pdo->prepare($query);
+
+		//bind the member variables to the placeholders in template
+		$formattedDate = $this->articleDate->format("Y-m-d H:i:s.u");
+		$parameters = ["articleId" => $this->articleId->getBytes(), "articleAuthorId" => $this->articleAuthorId->getBytes(), "articleCategory" => $this->articleCategory, "articleContent" => $this->articleContent, "articleDate" =>$formattedDate, "articleTitle" => $this->articleTitle];
 		$statement->execute($parameters);
 	}
 
@@ -269,16 +287,42 @@ class article {
 	 *deletes an article from mySQL
 	 *
 	 *@param \PDO $pdo PDO connection object
-	 *@throws|PDOException when mySQL relatoed errors occur
+	 *@throws|PDOException when mySQL related errors occur
 	 *@throw \TypeError if $pdo is not a PDO connection object
 	 **/
 	public function delete(\PDO $pdo) : void {
 		//create query template
 		$query = "DELETE FROM article WHERE articleId =  :articleId";
-		$statement =$pdo->prepare($query);
+		$statement = $pdo->prepare($query);
 
 		//bind member variables into the placeholders in the template
 		$parameters = ["articleId" => $this->articleId->getBytes()];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * gets Article by articleId (the primary key)
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid\string $articleId is article id
+	 * @retun Article|null Article found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable is not the correct data type
+	 **/
+	public static function getArticleByArticleId(\PDO $pdo, $articleId) : ?Article {
+		//sanitize articleID before searching
+		try{
+			$articleId = self::validateUuid($articleId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		// create query template
+		$query = "SELECT articleId, articleAuthorId, articleCategory, articleContent, articleDate, articleTitle FROM article WHERE articleId = :articleId";
+		$statement = $pdo->prepare($query);
+
+		//bind the article id to the placeholder in the template.
+		$parameters = ["articleId" => $articleId->getBytes()];
 		$statement->execute($parameters);
 	}
 }

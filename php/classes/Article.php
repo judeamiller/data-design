@@ -324,6 +324,20 @@ class article {
 		//bind the article id to the placeholder in the template.
 		$parameters = ["articleId" => $articleId->getBytes()];
 		$statement->execute($parameters);
+
+		//grab the article from mySQL.
+		try {
+			$article = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$article = new Article($row["articleId"], $row["articleAuthorId"], $row["articleCategory"], $row["articleContent"], $row["articleDate"], $row["articleTitle"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row could not be converted, rethrow it.
+			throw(new \PDOException($exception->getMessage(),0 , $exception));
+		}
+		return($article);
 	}
 }
 

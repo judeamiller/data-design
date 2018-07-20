@@ -339,6 +339,26 @@ class article {
 		}
 		return($article);
 	}
+
+	/**
+	 * gets Article by articleAuthorId (the foreign key)
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid\string $articleId is article id
+	 * @retun Article|null Article found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable is not the correct data type
+	 **/
+	public static function getArticleByArticleAuthorID(\PDO $pdo, $articleAuthorId) : \SplFixedArray {
+
+		try {
+			$articleAuthorId = self::validateUuid($articleAuthorId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+
+		}
+
+	}
+
 }
 
 

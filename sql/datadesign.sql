@@ -23,9 +23,9 @@ CREATE TABLE article(
 	articleId BINARY(16) NOT NULL,
 	articleAuthorId BINARY(16) NOT NULL,
 	articleCategory VARCHAR(32) NOT NULL,
+	articleContent VARCHAR(8192) NOT NULL,
 	articleDate DATETIME(6) NOT NULL,
 	articleTitle VARCHAR(100)NOT NULL,
-	articleContent VARCHAR(8192) NOT NULL,
 	INDEX(articleAuthorId),
 	FOREIGN KEY(articleAuthorId) REFERENCES author(authorId),
 	PRIMARY KEY(articleId)

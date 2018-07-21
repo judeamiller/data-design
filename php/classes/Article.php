@@ -341,7 +341,7 @@ class article {
 	}
 
 	/**
-	 * gets Article by articleAuthorId (the foreign key)
+	 * gets Articles by articleAuthorId (the foreign key)
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param Uuid\string $articleId is article id
@@ -350,6 +350,7 @@ class article {
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
 	public static function getArticleByArticleAuthorID(\PDO $pdo, $articleAuthorId) : \SplFixedArray {
+		//sanitize articleAuthorID before searching
 		try {
 			$articleAuthorId = self::validateUuid($articleAuthorId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
@@ -370,7 +371,7 @@ class article {
 		while(($row =  $statement->fetch()) !== false) {
 			try {
 				$article = new Article ($row["articleId"], $row["articleAuthorId"], $row["articleCategory"], $row["articleContent"], $row["articleDate"], $row["articleTitle"]);
-				$articles[$articles->key()] = $tweet;
+				$articles[$articles->key()] = $article;
 				$articles->next();
 			} catch(\Exception $exception) {
 				//if the row couldn't be converted, rethrow it
@@ -379,6 +380,47 @@ class article {
 		}
 
 		return($articles);
+	}
+
+	/**
+	 * gets Articles by articleCategory
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @retun Article|null Article found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable is not the correct data type
+	 **/
+	public static function getArticleByArticleCategory(\PDO $pdo, $articleCategory) : \SplFixedArray {
+		//sanitize articleCategory before searching
+		try {
+			$articleCategory = :$articleCategory;
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw (new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		//create query template
+		$query = "SELECT articleId, articleAuthorId, articleCategory, articleContent, articleDate, articleTitle FROM article WHERE articleCategory = :articleCategory";
+		$statement = $pdo->prepare($query);
+
+		//bind the article category  to the placeholder in template
+		$parameters = ["articleCategory" => $articleCategory];
+		$statement->execute($parameters);
+
+		// build an array of articles by author
+		$articles = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$article = new Article ($row["articleId"], $row["articleAuthorId"], $row["articleCategory"], $row["articleContent"], $row["articleDate"], $row["articleTitle"]);
+				$articles[$articles->key()] = $article;
+				$articles->next();
+			} catch(\Exception $exception) {
+				//if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+
+		return ($articles);
 	}
 
 }

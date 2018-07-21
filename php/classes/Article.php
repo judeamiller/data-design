@@ -350,13 +350,35 @@ class article {
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
 	public static function getArticleByArticleAuthorID(\PDO $pdo, $articleAuthorId) : \SplFixedArray {
-
 		try {
 			$articleAuthorId = self::validateUuid($articleAuthorId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-
+			throw (new \PDOException($exception->getMessage(), 0, $exception));
 		}
 
+		//create query template
+		$query = "SELECT articleId, articleAuthorId, articleCategory, articleContent, articleDate, articleTitle FROM article WHERE articleAuthorId = :articleAuthorId";
+		$statement = $pdo->prepare($query);
+
+		//bind the article author id  to the placeholder in template
+		$parameters = ["articleAuthorId" => $articleAuthorId->getBytes()];
+		$statement->execute($parameters);
+
+		// build an array of articles by author
+		$articles = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row =  $statement->fetch()) !== false) {
+			try {
+				$article = new Article ($row["articleId"], $row["articleAuthorId"], $row["articleCategory"], $row["articleContent"], $row["articleDate"], $row["articleTitle"]);
+				$articles[$articles->key()] = $tweet;
+				$articles->next();
+			} catch(\Exception $exception) {
+				//if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+
+		return($articles);
 	}
 
 }

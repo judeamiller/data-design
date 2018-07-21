@@ -37,7 +37,7 @@ class article {
 	/**
 	 * date this article was published
 	 * @var \DateTime $articleDate
-	**/
+	 **/
 	private $articleDate;
 	/**
 	 * the title of this article
@@ -56,14 +56,14 @@ class article {
 	 * @param string $newArticleTitle
 	 **/
 	public function __construct(uuid $newArticleId, uuid $newArticleAuthorId, string $newArticleCategory, string $newArticleContent, DateTime $newArticleDate, string $newArticleTitle) {
-		try{
+		try {
 			$this->setArticleId($newArticleId);
 			$this->setArticleAuthorId($newArticleAuthorId);
 			$this->getArticleCategory($newArticleCategory);
 			$this->getArticleContent($newArticleContent);
 			$this->getArticleDate($newArticleDate);
 			$this->getArticleTitle($newArticleTitle);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
@@ -75,8 +75,8 @@ class article {
 	 *
 	 * @return int value of article id
 	 **/
-	public function getArticleId() : Uuid {
-		return($this->articleId);
+	public function getArticleId(): Uuid {
+		return ($this->articleId);
 	}
 
 	/**
@@ -86,7 +86,7 @@ class article {
 	 * @throws \rangeException if $newArticleId  is not positive
 	 * @throws \TypeError if article id is not
 	 **/
-	public function  setArticleId($newArticleId) : void {
+	public function setArticleId($newArticleId): void {
 		try {
 			$uuid = self::validateUuid($newArticleId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
@@ -95,14 +95,15 @@ class article {
 		}
 		// convert and store the profile id
 		$this->articleId = $uuid;
-		}
+	}
+
 	/**
 	 * accessor method for article author id
 	 *
 	 * @return int value of article author id
 	 **/
-	public function getArticleAuthorId() : Uuid {
-		return($this->articleAuthorId);
+	public function getArticleAuthorId(): Uuid {
+		return ($this->articleAuthorId);
 	}
 
 	/**
@@ -112,7 +113,7 @@ class article {
 	 * @throws \rangeException if $newArticleAuthorId  is not positive
 	 * @throws \TypeError if article id is not
 	 **/
-	public function  setArticleAuthorId($newArticleAuthorId) : void {
+	public function setArticleAuthorId($newArticleAuthorId): void {
 		try {
 			$uuid = self::validateUuid($newArticleAuthorId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
@@ -122,6 +123,7 @@ class article {
 		// convert and store the profile id
 		$this->articleAuthorId = $uuid;
 	}
+
 	/**
 	 * accessor method for articleCategory
 	 * @return string value of author title
@@ -138,7 +140,7 @@ class article {
 	 * @throws \RangeException if $newArticleCategory is > 32 characters
 	 * @throws \TypeError if $newArticleCategory is not a string
 	 **/
-	public function setArticleCategory(string $newArticleCategory) : void {
+	public function setArticleCategory(string $newArticleCategory): void {
 		// verify the article category string is secure
 		$newArticleCategory = trim($newArticleCategory);
 		$newArticleCategory = filter_var($newArticleCategory, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -160,8 +162,9 @@ class article {
 	 * @return string value of article content
 	 **/
 	public function getArticleContent(): string {
-		return $this->articleContent ;
+		return $this->articleContent;
 	}
+
 	/**
 	 * mutator method for article content
 	 *
@@ -170,7 +173,7 @@ class article {
 	 * @throws \RangeException if $newArticleContent is > 8192 characters
 	 * @throws \TypeError if $newArticleContent is not a string
 	 **/
-	public function setArticleContent(string $newArticleContent) : void {
+	public function setArticleContent(string $newArticleContent): void {
 		// verify the article content is secure
 		$newArticleContent = trim($newArticleContent);
 		$newArticleContent = filter_var($newArticleContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -192,8 +195,8 @@ class article {
 	 *
 	 * @return \DateTime value of article date
 	 **/
-	public function getArticleDate() : \DateTime {
-		return($this->articleDate);
+	public function getArticleDate(): \DateTime {
+		return ($this->articleDate);
 	}
 
 	/**
@@ -203,7 +206,7 @@ class article {
 	 * @throws \InvalidArgumentException if $newArticleDate is not a valid object or string
 	 * @throws \RangeException if $newArticleDate is a date that does not exist
 	 **/
-	public function setArticleDate($newArticleDate = null) : void {
+	public function setArticleDate($newArticleDate = null): void {
 		// base case: if the date is null, use the current date and time
 		if($newArticleDate === null) {
 			$this->articleDate = new \DateTime();
@@ -227,6 +230,7 @@ class article {
 	public function getArticleTitle(): string {
 		return $this->articleTitle;
 	}
+
 	/**
 	 * mutator method for article title
 	 *
@@ -235,7 +239,7 @@ class article {
 	 * @throws \RangeException if $newArticleTitle is > 100 characters
 	 * @throws \TypeError if $newArticleTitle is not a string
 	 **/
-	public function setArticleTitle(string $newArticleTitle) : void {
+	public function setArticleTitle(string $newArticleTitle): void {
 		// verify the article title string is secure
 		$newArticleTitle = trim($newArticleTitle);
 		$newArticleTitle = filter_var($newArticleTitle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -259,14 +263,14 @@ class article {
 	 * @throws\PDOException when mySQL related errors occur
 	 * @throws\TypeError if $pdo is not a PDO connection object.
 	 **/
-	public function insert(\PDO $pdo) : void {
+	public function insert(\PDO $pdo): void {
 		//create query template
 		$query = "INSERT INTO article(articleId, articleAuthorId, articleCategory, articleContent, articleDate, articleTitle) VALUES(:articleId, :articleAuthorId, :articleCategory, :articleContent, :articleDate, :articleTitle)";
 		$statement = $pdo->prepare($query);
 
 		//bind the member variables to the placeholders in template
 		$formattedDate = $this->articleDate->format("Y-m-d H:i:s.u");
-		$parameters = ["articleId" => $this->articleId->getBytes(), "articleAuthorId" => $this->articleAuthorId->getBytes(), "articleCategory" => $this->articleCategory, "articleContent" => $this->articleContent, "articleDate" =>$formattedDate, "articleTitle" => $this->articleTitle];
+		$parameters = ["articleId" => $this->articleId->getBytes(), "articleAuthorId" => $this->articleAuthorId->getBytes(), "articleCategory" => $this->articleCategory, "articleContent" => $this->articleContent, "articleDate" => $formattedDate, "articleTitle" => $this->articleTitle];
 		$statement->execute($parameters);
 	}
 
@@ -274,29 +278,29 @@ class article {
 	/**
 	 *updates an article from mySQL
 	 *
-	 *@param \PDO $pdo PDO connection object
-	 *@throws|PDOException when mySQL related errors occur
-	 *@throw \TypeError if $pdo is not a PDO connection object
+	 * @param \PDO $pdo PDO connection object
+	 * @throws|PDOException when mySQL related errors occur
+	 * @throw \TypeError if $pdo is not a PDO connection object
 	 **/
-	public function update(\PDO $pdo) : void {
+	public function update(\PDO $pdo): void {
 		//create query template
 		$query = "UPDATE article SET articleAuthorId  = :articleAuthorId, articleContent = :articleContent, articleDate = :articleDate, articleTitle = :articleTitle WHERE articleId = :articleId";
 		$statement = $pdo->prepare($query);
 
 		//bind the member variables to the placeholders in template
 		$formattedDate = $this->articleDate->format("Y-m-d H:i:s.u");
-		$parameters = ["articleId" => $this->articleId->getBytes(), "articleAuthorId" => $this->articleAuthorId->getBytes(), "articleCategory" => $this->articleCategory, "articleContent" => $this->articleContent, "articleDate" =>$formattedDate, "articleTitle" => $this->articleTitle];
+		$parameters = ["articleId" => $this->articleId->getBytes(), "articleAuthorId" => $this->articleAuthorId->getBytes(), "articleCategory" => $this->articleCategory, "articleContent" => $this->articleContent, "articleDate" => $formattedDate, "articleTitle" => $this->articleTitle];
 		$statement->execute($parameters);
 	}
 
 	/**
 	 *deletes an article from mySQL
 	 *
-	 *@param \PDO $pdo PDO connection object
-	 *@throws|PDOException when mySQL related errors occur
-	 *@throw \TypeError if $pdo is not a PDO connection object
+	 * @param \PDO $pdo PDO connection object
+	 * @throws|PDOException when mySQL related errors occur
+	 * @throw \TypeError if $pdo is not a PDO connection object
 	 **/
-	public function delete(\PDO $pdo) : void {
+	public function delete(\PDO $pdo): void {
 		//create query template
 		$query = "DELETE FROM article WHERE articleId =  :articleId";
 		$statement = $pdo->prepare($query);
@@ -315,9 +319,9 @@ class article {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
-	public static function getArticleByArticleId(\PDO $pdo, $articleId) : ?Article {
+	public static function getArticleByArticleId(\PDO $pdo, $articleId): ?Article {
 		//sanitize articleID before searching
-		try{
+		try {
 			$articleId = self::validateUuid($articleId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
@@ -341,9 +345,9 @@ class article {
 			}
 		} catch(\Exception $exception) {
 			// if the row could not be converted, rethrow it.
-			throw(new \PDOException($exception->getMessage(),0 , $exception));
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return($article);
+		return ($article);
 	}
 
 	/**
@@ -355,7 +359,7 @@ class article {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
-	public static function getArticleByArticleAuthorID(\PDO $pdo, $articleAuthorId) : \SplFixedArray {
+	public static function getArticleByArticleAuthorID(\PDO $pdo, $articleAuthorId): \SplFixedArray {
 		//sanitize articleAuthorID before searching
 		try {
 			$articleAuthorId = self::validateUuid($articleAuthorId);
@@ -374,7 +378,7 @@ class article {
 		// build an array of articles by author
 		$articles = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		while(($row =  $statement->fetch()) !== false) {
+		while(($row = $statement->fetch()) !== false) {
 			try {
 				$article = new Article ($row["articleId"], $row["articleAuthorId"], $row["articleCategory"], $row["articleContent"], $row["articleDate"], $row["articleTitle"]);
 				$articles[$articles->key()] = $article;
@@ -385,9 +389,55 @@ class article {
 			}
 		}
 
-		return($articles);
+		return ($articles);
 	}
 
-}
+	/**
+	 * gets Articles by articleCategory
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $articleCategory to search for
+	 * @return \SplFixdArray of articles found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable is not the correct data type
+	 **/
+	public static function getArticleByArticleCategory(\PDO $pdo, $articleCategory): \SplFixedArray {
+		//sanitize articleCategory before searching
+		$articleCategory = trim($articleCategory);
+		$articleCategory = filter_var($articleCategory, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($articleCategory) === true) {
+			throw(new \PDOException("article content is invalid."));
+		}
+
+		// escape any mySQL wild cards
+		$articleCategory = str_replace("_", "\\_", str_replace("%", "\\%", $articleCategory));
+
+		//create query template
+		$query = "SELECT articleId, articleAuthorId, articleCategory, articleContent, articleDate, articleTitle FROM article WHERE articleCategory = :articleCategory";
+		$statement = $pdo->prepare($query);
+
+		//bind the article category  to the placeholder in template
+		$articleCategory = "%articleCategory%";
+		$parameters = ["articleCategory" => $articleCategory];
+		$statement->execute($parameters);
+
+		// build an array of articles by author
+		$articles = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$article = new Article ($row["articleId"], $row["articleAuthorId"], $row["articleCategory"], $row["articleContent"], $row["articleDate"], $row["articleTitle"]);
+			$articles[$articles->key()] = $article;
+				$articles->next();
+			} catch(\Exception $exception) {
+				//if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+
+			return ($articles);
+		}
+	}
+
 
 

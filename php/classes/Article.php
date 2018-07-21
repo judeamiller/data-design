@@ -11,7 +11,7 @@ use Ramsey\Uuid\Uuid;
  * @author  Jude Baca-Miller <jmiller156@cnm.edu>
  **/
 
-class article {
+class Article {
 	use ValidateUuid;
 	use ValidateDate;
 	/**
@@ -401,19 +401,19 @@ class article {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
-	public static function getArticleByArticleCategory(\PDO $pdo, $articleCategory): \SplFixedArray {
-		//sanitize articleCategory before searching
+	public static function getArticleByArticleCategory(\PDO $pdo, string $articleCategory) : \SplFixedArray {
+		//Sanitize the article content description before searching
 		$articleCategory = trim($articleCategory);
 		$articleCategory = filter_var($articleCategory, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($articleCategory) === true) {
 			throw(new \PDOException("article content is invalid."));
 		}
 
-		// escape any mySQL wild cards
+		//escape any mySQL wildcards
 		$articleCategory = str_replace("_", "\\_", str_replace("%", "\\%", $articleCategory));
 
 		//create query template
-		$query = "SELECT articleId, articleAuthorId, articleCategory, articleContent, articleDate, articleTitle FROM article WHERE articleCategory = :articleCategory";
+		$query = "SELECT articleId, articleAuthorId, articleCategory, articleContent, articleDate, articleTitle FROM article WHERE articleCategory LIKE :articleCategory";
 		$statement = $pdo->prepare($query);
 
 		//bind the article category  to the placeholder in template
@@ -434,8 +434,7 @@ class article {
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-
-			return ($articles);
+		return ($articles);
 		}
 	}
 

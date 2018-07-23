@@ -57,7 +57,7 @@ class Article {
 	 * @param uuid $newArticleAuthorId
 	 * @param string $newArticleCategory
 	 * @param string $newArticleContent
-	 * @param DateTime $newArticleDate
+	 * @param \DateTime|string $newArticleDate
 	 * @param string $newArticleTitle
 	 **/
 	public function __construct(Uuid $newArticleId, Uuid $newArticleAuthorId, string $newArticleCategory, string $newArticleContent, $newArticleDate, string $newArticleTitle) {
@@ -78,7 +78,7 @@ class Article {
 	/**
 	 * accessor method for article id
 	 *
-	 * @return int value of article id
+	 * @return Uuid value of article id
 	 **/
 	public function getArticleId(): Uuid {
 		return ($this->articleId);
@@ -221,7 +221,7 @@ class Article {
 		// store the like date using the ValidateDate trait
 		try {
 			$newArticleDate = self::validateDateTime($newArticleDate);
-		} catch(\InvalidArgumentException | \RangeException $exception) {
+		} catch(\InvalidArgumentException | \RangeException | \Exception $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
@@ -422,7 +422,7 @@ class Article {
 		$statement = $pdo->prepare($query);
 
 		//bind the article category  to the placeholder in template
-		$articleCategory = "%articleCategory%";
+		$articleCategory = "%$articleCategory%";
 		$parameters = ["articleCategory" => $articleCategory];
 		$statement->execute($parameters);
 

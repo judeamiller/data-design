@@ -21,12 +21,12 @@ class Article {
 	use ValidateDate;
 	/**
 	 * id for this article: this is the primary key
-	 * @var int $articleId
+	 * @var Uuid $articleId
 	 **/
 	private $articleId;
 	/**
 	 * authorId for this article: this is the Foreign key
-	 * @var int $articleAuthorId
+	 * @var Uuid $articleAuthorId
 	 **/
 	private $articleAuthorId;
 	/**
@@ -60,14 +60,14 @@ class Article {
 	 * @param DateTime $newArticleDate
 	 * @param string $newArticleTitle
 	 **/
-	public function __construct(uuid $newArticleId, uuid $newArticleAuthorId, string $newArticleCategory, string $newArticleContent, DateTime $newArticleDate, string $newArticleTitle) {
+	public function __construct(Uuid $newArticleId, Uuid $newArticleAuthorId, string $newArticleCategory, string $newArticleContent, $newArticleDate, string $newArticleTitle) {
 		try {
 			$this->setArticleId($newArticleId);
 			$this->setArticleAuthorId($newArticleAuthorId);
-			$this->getArticleCategory($newArticleCategory);
-			$this->getArticleContent($newArticleContent);
-			$this->getArticleDate($newArticleDate);
-			$this->getArticleTitle($newArticleTitle);
+			$this->setArticleCategory($newArticleCategory);
+			$this->setArticleContent($newArticleContent);
+			$this->setArticleDate($newArticleDate);
+			$this->setArticleTitle($newArticleTitle);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
@@ -319,8 +319,8 @@ class Article {
 	 * gets Article by articleId (the primary key)
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param Uuid\string $articleId is article id
-	 * @retun Article|null Article found or null if not found
+	 * @param Uuid|string $articleId is article id
+	 * @return Article|null Article found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
@@ -359,7 +359,7 @@ class Article {
 	 * gets Articles by articleAuthorId (the foreign key)
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param Uuid\string $articleAuthorId is author id to search by
+	 * @param Uuid|string $articleAuthorId is author id to search by
 	 * @return \SplFixedArray of articles found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable is not the correct data type

@@ -1,8 +1,10 @@
 <?php
 
-namespace Edu\Cnm\DataDesign;
+namespace Judeamiller\DataDesign;
 
-use Ramsey\Uuid\Uuid;
+
+require_once("autoload.php");
+
 /**
  * Article class for ArsTechnica
  *
@@ -18,7 +20,7 @@ class Article {
 	 * id for this article: this is the primary key
 	 * @var int $articleId
 	 **/
-	private $articleId;
+	private $articleId;add a namespace  and autoload.php
 	/**
 	 * authorId for this article: this is the Foreign key
 	 * @var int $articleAuthorId
@@ -397,7 +399,7 @@ class Article {
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param string $articleCategory to search for
-	 * @return \SplFixdArray of articles found
+	 * @return \SplFixedArray of articles found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/

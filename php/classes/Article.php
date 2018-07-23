@@ -359,8 +359,8 @@ class Article {
 	 * gets Articles by articleAuthorId (the foreign key)
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param Uuid\string $articleId is article id
-	 * @retun Article|null Article found or null if not found
+	 * @param Uuid\string $articleAuthorId is author id to search by
+	 * @return \SplFixedArray of articles found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/

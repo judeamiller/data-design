@@ -105,7 +105,7 @@ class Article {
 	/**
 	 * accessor method for article author id
 	 *
-	 * @return int value of article author id
+	 * @return Uuid value of article author id
 	 **/
 	public function getArticleAuthorId(): Uuid {
 		return ($this->articleAuthorId);

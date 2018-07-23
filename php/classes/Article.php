@@ -4,6 +4,9 @@ namespace Judeamiller\DataDesign;
 
 
 require_once("autoload.php");
+require_once(dirname(__DIR__,2) . "/vendor/autoload.php");
+
+use Ramsey\Uuid\Uuid;
 
 /**
  * Article class for ArsTechnica
@@ -20,7 +23,7 @@ class Article {
 	 * id for this article: this is the primary key
 	 * @var int $articleId
 	 **/
-	private $articleId;add a namespace  and autoload.php
+	private $articleId;
 	/**
 	 * authorId for this article: this is the Foreign key
 	 * @var int $articleAuthorId

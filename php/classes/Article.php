@@ -211,14 +211,14 @@ class Article {
 	 * @throws \InvalidArgumentException if $newArticleDate is not a valid object or string
 	 * @throws \RangeException if $newArticleDate is a date that does not exist
 	 **/
-	public function setArticleDate($newArticleDate = null): void {
+	public function setArticleDate($newAricleDate = null): void {
 		// base case: if the date is null, use the current date and time
 		if($newArticleDate === null) {
 			$this->articleDate = new \DateTime();
 			return;
 		}
 
-		// store the like date using the ValidateDate trait
+		// store the article date using the ValidateDate trait
 		try {
 			$newArticleDate = self::validateDateTime($newArticleDate);
 		} catch(\InvalidArgumentException | \RangeException | \Exception $exception) {

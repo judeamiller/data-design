@@ -7,7 +7,7 @@
  * @author  Jude Baca-Miller <jmiller156@cnm.edu>
  **/
 
-class author {
+class Author {
 	/**
 	 * id for this author: this is the primary key
 	 * @var int $authorId
@@ -60,7 +60,7 @@ class author {
 	 * @param string $newAuthorTitle
 	 * @param string $newAuthorTwitterLink
 	 **/
-	public function __construct(uuid $newAuthorId, string $newAuthorEmail, string $newAuthorHash, string $newAuthorName, string $newAuthorProfile, string $newAuthorProfilePicture, string $newAuthorTitle, string $newAuthorTwitterLink) {
+	public function __construct(Uuid $newAuthorId, string $newAuthorEmail, string $newAuthorHash, string $newAuthorName, string $newAuthorProfile, string $newAuthorProfilePicture, string $newAuthorTitle, string $newAuthorTwitterLink) {
 		try{
 			$this->setAuthorId($newAuthorId);
 			$this->setAuthorEmail($newAuthorEmail);
@@ -88,7 +88,7 @@ class author {
 	/**
 	 * mutator method for author id
 	 *
-	 * @param Uuud| sting $newAuthorId value of new author id
+	 * @param Uuud| string $newAuthorId value of new author id
 	 * @throws \rangeException if $newAuthorId  is not positive
 	 * @throws \TypeError if author id is not
 	 **/
